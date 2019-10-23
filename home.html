@@ -5,32 +5,60 @@
 <meta name="theme-color" content="#2F3BA2" />
 
 <head>
-	<title>Prasadam</title>
-	<link rel="manifest" href="/manifest.json">
+  <title>Prasadam</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="styles/css/main.css" />
 </head>
+<script>
+  if ("serviceWorker" in navigator) {
+    if (navigator.serviceWorker.controller) {
+      console.log("[PWA Builder] active service worker found, no need to register");
+    } else {
+      // Register the service worker
+      navigator.serviceWorker
+        .register("pwabuilder-sw.js", {
+          scope: "./"
+        })
+        .then(function (reg) {
+          console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
+        });
+    }
+  }
+  else console.log("no sw");
+</script>
+<script src="js/install.js"></script>
 
 <body>
-	<script>
-		if ("serviceWorker" in navigator) {
-			if (navigator.serviceWorker.controller) {
-				console.log("[PWA Builder] active service worker found, no need to register");
-			} else {
-				// Register the service worker
-				navigator.serviceWorker
-					.register("pwabuilder-sw.js", {
-						scope: "./"
-					})
-					.then(function (reg) {
-						console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
-					});
-			}
-		}
-		else console.log("no sw");
-	</script>
-	<script src="js/install.js"></script>
-	<h2>Login</h2>
-	<div>Home</div>
+
+  <div>
+    <h2>Hare Krsna, <span id="name">devotee</span></h2>
+    <div>Home</div>
+    <div style="display:flex; align-items:center; justify-content: center">
+      <span>Breakfast</span>
+      <span class="toggle-btn active">
+        <input name="0" type="checkbox" checked class="cb-value" />
+        <span class="round-btn"></span>
+      </span>
+    </div>
+    <br /><br />
+    <div style="display:flex; align-items:center; justify-content: center">
+      <span>Lunch</span>
+      <span class="toggle-btn active">
+        <input name="1" type="checkbox" checked class="cb-value" />
+        <span class="round-btn"></span>
+      </span>
+    </div>
+    <br /><br />
+    <div style="display:flex; align-items:center; justify-content: center">
+      <span>Dinner</span>
+      <span class="toggle-btn active">
+        <input name="2" type="checkbox" checked class="cb-value" />
+        <span class="round-btn"></span>
+      </span>
+    </div>
+  </div>
 </body>
 <script src="js/jquery.min.js"></script>
-<script src="js/main.js"></script>
+<script src="js/home.js"></script>
+
 </html>
