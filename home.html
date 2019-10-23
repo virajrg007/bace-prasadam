@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Prasadam app for VJTI BACE">
+<meta name="theme-color" content="#2F3BA2" />
+
+<head>
+	<title>Prasadam</title>
+	<link rel="manifest" href="/manifest.json">
+</head>
+
+<body>
+	<script>
+		if ("serviceWorker" in navigator) {
+			if (navigator.serviceWorker.controller) {
+				console.log("[PWA Builder] active service worker found, no need to register");
+			} else {
+				// Register the service worker
+				navigator.serviceWorker
+					.register("pwabuilder-sw.js", {
+						scope: "./"
+					})
+					.then(function (reg) {
+						console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
+					});
+			}
+		}
+		else console.log("no sw");
+	</script>
+	<script src="js/install.js"></script>
+	<h2>Login</h2>
+	<div>Home</div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/main.js"></script>
+</html>
