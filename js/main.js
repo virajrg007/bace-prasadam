@@ -9,7 +9,14 @@ $(document).ready(function() {
       },
       success: function(response) {
         localStorage.setItem("username", response);
-        setTimeout(()=>window.location.replace("./home.html"), 2000);
+        var user = JSON.parse(response);
+        console.log(user);
+        if(user.role=='devotee')
+          setTimeout(()=>window.location.replace("./home.html"), 2000);
+        else if(user.role=='cook')
+          setTimeout(()=>window.location.replace("./cook.html"), 2000);
+        else
+          setTimeout(()=>window.location.replace("./admin.html"), 2000);
       },
       error: function(xhr) {
         alert("login unsuccessful!!");
